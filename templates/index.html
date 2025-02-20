@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='uk'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>To-Do List</title>
+    <link rel='stylesheet' href='/static/styles.css'>
+</head>
+<body>
+    <div class='container'>
+        <h1>Список завдань на день</h1>
+        <form action='/add' method='post' class='task-form'>
+            <input type='text' name='task' placeholder='Добавить задачу' required>
+            <button type='submit' class='add-btn'>Додати</button>
+        </form>
+        <ul class='task-list'>
+            {% for task in tasks %}
+                <li class='task-item {% if task.done %}completed{% endif %}'>
+                    <span>{{ task.text }}</span>
+                    <div class='task-actions'>
+                        <form action='/edit/{{ task.id }}' method='post' class='edit-form'>
+                            <input type='text' name='task' value='{{ task.text }}' required>
+                            <button type='submit' class='edit-btn'>✏️</button>
+                        </form>
+                        <a href='/complete/{{ task.id }}' class='complete-btn'>✔</a>
+                        <a href='/delete/{{ task.id }}' class='delete-btn'>❌</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
