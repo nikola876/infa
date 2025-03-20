@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}All Accounts{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center">List of Accounts</h2>
+    <table class="table table-bordered mt-4">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('login_as', user_id=user.id) }}" class="d-inline">
+                        <button type="submit" class="btn btn-primary btn-sm">Login as</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

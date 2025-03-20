@@ -1,0 +1,23 @@
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.btn-danger {
+    background: #dc3545;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.btn-danger:hover {
+    background: #a71d2a;
+}
+.form-control {
+    border-radius: 5px;
+}
+
+textarea.form-control {
+    resize: none;
+    height: 100px;
+}
